@@ -74,22 +74,23 @@ cat output/output_2024-12-01.txt
 
 ## ✅ Final Summary
 -------------------------------------------
-❌ Naïve approach (line-by-line search) is too slow
-   - Reading the entire log file for each query is inefficient (especially for large files ~1TB).
+❌ Naïve approach (loading entire file into memory) is inefficient
+   - Processing a 1TB log file at once would require excessive memory and slow down performance.
 
-✅ Indexing enables fast lookups and makes the solution scalable
-   - Preprocessing the log file and creating an index significantly improves search speed.
+✅ Efficient line-by-line processing enables scalable log retrieval
+   - The program reads the log file **one line at a time**, filtering only the required entries.
 
-🚀 Preprocessing (index creation) is a one-time cost but speeds up every query
-   - Once indexed, retrieving logs for any specific date is almost instant.
+🚀 Optimized for large files without high memory usage
+   - Since it does **not** load the full file into RAM, it handles even **huge logs efficiently**.
 
-💡 Efficient file handling ensures minimal memory usage
-   - The program reads logs in a streaming manner, avoiding excessive memory consumption.
+💡 Stream-based file handling improves performance
+   - By using **sequential reading**, the script minimizes resource consumption and remains responsive.
 
 📂 Logs are saved in the `output/` directory for easy access
-   - Extracted logs are stored in a structured format for further analysis.
+   - Extracted logs are **stored in a structured format** (`output/output_YYYY-MM-DD.txt`) for quick retrieval.
 
-✅ This approach ensures **fast, memory-efficient, and scalable log retrieval.**
+✅ This approach ensures **scalable, memory-efficient, and reliable log extraction** for large datasets.
+
 
 
 
