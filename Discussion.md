@@ -44,7 +44,6 @@ We chose the **indexing approach** because it significantly reduces lookup time 
 ├── log_file.txt          # Large log file (1TB)
 ├── log_index.txt         # Stores byte offsets for each date
 ├── src/
-│   ├── create_index.cpp  # Generates the index
 │   ├── extract_logs.cpp  # Extracts logs efficiently using the index
 └── output/
     ├── output_YYYY-MM-DD.txt  # Extracted logs for a given date
@@ -53,23 +52,14 @@ We chose the **indexing approach** because it significantly reduces lookup time 
 
 
 ## 🛠️ Steps to Run
-### 1️⃣ Create logic index (one time setup)
-```
-g++ src/create_index.cpp -o create_index
-./create_index
-
-
-```
-
-
-### 2️⃣ Extract Logs for a Given Dat
+### 1️⃣ Extract Logs for a Given Dat
 ```
 g++ src/extract_logs.cpp -o extract_logs
 ./extract_logs 2024-12-01
 
 ```
 
-### 3️⃣ View the Extracted Logs
+### 2️⃣ View the Extracted Logs
 ```
 cat output/output_2024-12-01.txt
 
