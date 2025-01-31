@@ -16,29 +16,28 @@ We need to extract all log entries for a given date from a **1TB log file**. Sin
 - No extra storage required.
 
 ❌ **Cons:**
-- **Too slow!** Since the log file is 1TB, scanning it line by line for every query would take hours.
+- **Slow for large files!** Since the log file is ~1TB, scanning it line by line for every query takes time.
 - **Inefficient for repeated queries** on different dates.
 
 ---
 
-### 2️⃣ Optimized Approach: Indexing for Fast Lookups (Final Choice ✅)
+### 2️⃣ Optimized Approach: Efficient Streaming Search (Final Choice ✅)
 🔹 **Idea:**
-1. **Preprocessing Step:** Create an **index file** (`log_index.txt`) mapping each date to its byte offset in the log file.
-2. **Query Step:** Use the index to seek directly to the correct position in the log file and read only the relevant logs.
+- Instead of **loading the entire file into memory**, the script reads **line by line**, checking for matching dates.
+- Matching log entries are **written directly** to the output file (`output/output_YYYY-MM-DD.txt`).
 
 ✅ **Pros:**
-- **Super fast lookups!** No need to read unnecessary lines.
-- **Minimal memory usage** (only storing offsets per date).
-- **Scales well** with large files.
-
-❌ **Cons:**
-- Requires a **one-time preprocessing step** (indexing the file), but this is much faster than scanning for every query.
+- **Memory-efficient** – The script processes one line at a time instead of loading the whole file.
+- **Scales well** – Works even for large log files (~1TB).
+- **No extra storage required** – No need for additional index files.
 
 ---
 
 ## 🚀 Final Solution Summary
-We chose the **indexing approach** because it significantly reduces lookup time by allowing **direct access** to relevant log entries.  
-Instead of scanning the whole file, we **jump to the correct position instantly** based on the index.
+We chose the **streaming approach** because it efficiently processes large log files **without high memory usage**.  
+Instead of loading everything into RAM, the program reads the log file **line by line** and writes matching entries to the output file.  
+This ensures **scalability, minimal resource consumption, and correctness.**
+
 
 
 📂 Project Directory
