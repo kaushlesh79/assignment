@@ -41,8 +41,7 @@ We chose the **indexing approach** because it significantly reduces lookup time 
 
 📂 Project Directory
 ```
-├── log_file.txt          # Large log file (1TB)
-├── log_index.txt         # Stores byte offsets for each date
+├── log2024.log         # Large log file (1TB)
 ├── src/
 │   ├── extract_logs.cpp  # Extracts logs efficiently using the index
 └── output/
